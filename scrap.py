@@ -38,18 +38,14 @@ driver.find_element_by_css_selector(login).click()
 
 # Entrar en el perfil del usuario
 
-driver.get('https://es.quora.com/profile/Omar-Bessa?q=omar%20bessa')
+driver.get('https://es.quora.com/profile/Omar-Bessa/answers')
+respuesta = driver.find_elements_by_xpath('//span[@class="q-box"]')
 
 # Seleccionar opcion respuestas
-respuestas = '#mainContent > div.q-box.qu-mt--small.qu-borderTop.qu-borderWidth--retinaOverride.qu-borderWidth--thick > div > div.q-box.qu-borderBottom.qu-bg--white > div > div > div:nth-child(2) > div > div.q-relative.qu-display--flex > div'
-driver.find_element_by_css_selector(respuestas).click()
-
-# Obtener el span de las respuestas
-texto_respuestas = driver.find_elements_by_xpath('/html/body/div[2]/div[2]/div/div[3]/div/div[1]/div[4]/div/div[4]/div[1]')
-for texto_respuesta in texto_respuestas:
-    respuesta = texto_respuesta.find_element_by_xpath('.//span[class="q-box"]').text
-    print(respuesta)
-
+cuerpo_de_texto = driver.find_elements_by_class_name('q-box')
+for texto in cuerpo_de_texto:
+    print(texto.text)
+    
 time.sleep(7)
 
 driver.quit()
